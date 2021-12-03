@@ -18,7 +18,6 @@ import (
 )
 
 func main() {
-	println("Hello, World!")
 	baseURL, _ := url.Parse("http://localhost:3000/data/")
 	var store fs.FS
 	store = httpfs.New(http.DefaultClient, baseURL)
