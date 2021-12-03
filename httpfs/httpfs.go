@@ -36,7 +36,7 @@ func (f *httpFS) Open(name string) (fs.File, error) {
 		return nil, err
 	}
 
-	if resp.StatusCode > 400 {
+	if resp.StatusCode >= 400 {
 		_ = resp.Body.Close()
 		if resp.StatusCode == http.StatusNotFound {
 			return nil, fs.ErrNotExist
