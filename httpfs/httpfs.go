@@ -36,13 +36,11 @@ func (f *httpFS) Open(name string) (fs.File, error) {
 		return nil, err
 	}
 
-	if resp.StatusCode == http.StatusNotFound {
-		_ = resp.Body.Close()
-		return nil, fs.ErrNotExist
-	}
-
 	if resp.StatusCode > 400 {
 		_ = resp.Body.Close()
+		if resp.StatusCode == http.StatusNotFound {
+			return nil, fs.ErrNotExist
+		}
 		return nil, errors.New("HTTP error: " + resp.Status)
 	}
 
