@@ -37,10 +37,12 @@ func (f *httpFS) Open(name string) (fs.File, error) {
 	}
 
 	if resp.StatusCode == http.StatusNotFound {
+		_ = resp.Body.Close()
 		return nil, fs.ErrNotExist
 	}
 
 	if resp.StatusCode > 400 {
+		_ = resp.Body.Close()
 		return nil, errors.New("HTTP error: " + resp.Status)
 	}
 

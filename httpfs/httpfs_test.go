@@ -152,6 +152,7 @@ func TestNotFound(t *testing.T) {
 			do: func(req *http.Request) (*http.Response, error) {
 				return &http.Response{
 					StatusCode: 404,
+					Body:       io.NopCloser(strings.NewReader("")),
 				}, nil
 			},
 		},
@@ -174,6 +175,7 @@ func TestServerError(t *testing.T) {
 				return &http.Response{
 					Status:     "500 Internal Server Error",
 					StatusCode: 500,
+					Body:       io.NopCloser(strings.NewReader("")),
 				}, nil
 			},
 		},

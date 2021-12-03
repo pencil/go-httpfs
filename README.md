@@ -7,7 +7,6 @@ An `fs.FS` implementation that reads files from an HTTP backend.
 package main
 
 import (
-	"fmt"
 	"io"
 	"io/fs"
 	"log"
@@ -26,12 +25,13 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	defer file.Close()
 
 	data, err := io.ReadAll(file)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	fmt.Println(data)
+	log.Printf("%s", data)
 }
 ```
