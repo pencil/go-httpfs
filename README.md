@@ -1,5 +1,5 @@
 # go-httpfs
-An `fs.FS` implementation that reads files from an HTTP backend.
+An [`fs.FS`](https://pkg.go.dev/io/fs#FS) implementation that reads files from an HTTP backend.
 
 ## Usage
 
